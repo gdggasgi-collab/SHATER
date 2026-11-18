@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>شاطر</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1b1a33;--bg:#1d1b4b;--px:4px}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:'Cairo',system-ui,sans-serif;color:#fff;background:var(--bg)}
+body{background:
+  linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px) 0 0/16px 16px,
+  linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px) 0 0/16px 16px,
+  linear-gradient(180deg,#2b2a72 0%,#1d1b4b 60%,#141235 100%);min-height:100vh}
+button{font-family:inherit;cursor:pointer}
+:focus-visible{outline:4px solid #fde047;outline-offset:3px}
+.wrap{max-width:1000px;margin:0 auto;padding:20px 18px 40px}
+.px{border:4px solid var(--ink);box-shadow:6px 6px 0 var(--ink);border-radius:6px}
+.btn{font-size:22px;font-weight:900;color:var(--ink);background:#fde047;padding:12px 26px;border:4px solid var(--ink);box-shadow:5px 5px 0 var(--ink);border-radius:6px;display:inline-flex;align-items:center;gap:10px}
+.btn:active{transform:translate(4px,4px);box-shadow:1px 1px 0 var(--ink)}
+.btn.green{background:#4ade80}.btn.blue{background:#7dd3fc}.btn.pink{background:#f9a8d4}.btn.gray{background:#cbd5e1}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px}
+.brand{font-size:34px;font-weight:900;text-shadow:4px 4px 0 var(--ink)}
+.coins{display:flex;align-items:center;gap:8px;background:#fde047;color:var(--ink);font-weight:900;font-size:24px;padding:6px 16px}
+.coin{width:26px;height:26px;background:#f59e0b;border:3px solid var(--ink);border-radius:50%;box-shadow:inset -4px -4px 0 #b45309}
+.back{background:#ffffff22;color:#fff;border:3px solid #ffffff55;border-radius:6px;font-size:18px;font-weight:800;padding:8px 14px}
+.worlds{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+.world{position:relative;min-height:220px;padding:22px;color:#fff;text-align:right;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end}
+.world h2{margin:0;font-size:32px;font-weight:900;text-shadow:3px 3px 0 var(--ink)}
+.world p{margin:4px 0 0;font-size:18px;font-weight:700}
+.world .art{position:absolute;inset:0;opacity:.9}
+.th-teal{background:#0e9fb8}.th-purple{background:#8b3fd1}.th-blue{background:#3b5bdb}.th-orange{background:#ea7a1a}.th-green{background:#22a35a}
+.map{position:relative;padding:20px 0;display:flex;flex-direction:column;gap:26px;align-items:center}
+.level{width:110px;height:110px;font-size:40px;font-weight:900;color:var(--ink);background:#fde047;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1}
+.level small{font-size:13px;font-weight:800;margin-top:6px;max-width:100px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.level.done{background:#4ade80}.level.locked{background:#64748b;color:#1e293b;cursor:not-allowed}
+.lv-row{display:flex;align-items:center;gap:14px}
+.lv-row:nth-child(odd){transform:translateX(90px)}.lv-row:nth-child(even){transform:translateX(-90px)}
+.panel{background:#fffdf5;color:var(--ink);padding:24px 26px}
+.panel h2{margin:0 0 10px;font-size:26px;font-weight:900}
+.ar{font-family:'Amiri',serif}
+.big{font-size:32px;line-height:2;font-weight:700}
+.tiles{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px}
+.tile{font-family:'Amiri',serif;font-size:34px;font-weight:700;background:#e0f2fe;border:3px solid var(--ink);border-radius:6px;padding:4px 18px}
+.hl{background:#fde047;border-radius:6px;padding:0 4px}
+.reading{background:#bae6fd;border-radius:6px}
+.steps{display:flex;gap:8px;margin:0 0 18px}
+.steps span{flex:1;height:12px;background:#ffffff33;border:3px solid var(--ink);border-radius:4px}
+.steps span.on{background:#fde047}
+.actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;margin-top:20px}
+.opts{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px}
+.opt{font-family:'Amiri',serif;font-size:32px;font-weight:700;color:var(--ink);background:#fff;border:4px solid var(--ink);box-shadow:4px 4px 0 var(--ink);border-radius:6px;padding:4px 24px}
+.opt.good{background:#4ade80}.opt.bad{background:#fca5a5;animation:shake .35s}
+.w{font-family:'Amiri',serif;font-size:30px;font-weight:700;color:var(--ink);background:transparent;border:0;border-radius:6px;padding:0 4px}
+.w.good{background:#4ade80}.w.bad{background:#fca5a5;animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.ear{width:52px;height:52px;border-radius:50%;border:3px solid var(--ink);background:#7dd3fc;display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;margin-inline-start:10px}
+.overlay{position:fixed;inset:0;background:#0b0a24cc;display:flex;align-items:center;justify-content:center;z-index:20;padding:16px}
+.keypad{display:grid;grid-template-columns:repeat(3,72px);gap:10px;justify-content:center;direction:ltr}
+.key{height:64px;font-size:30px;font-weight:900;background:#fff;color:var(--ink);border:4px solid var(--ink);box-shadow:3px 3px 0 var(--ink);border-radius:6px}
+.pinshow{font-size:34px;letter-spacing:10px;text-align:center;min-height:50px;font-weight:900}
+.toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:30;font-size:24px;font-weight:900;color:var(--ink);background:#fde047;padding:10px 22px}
+.center{text-align:center}
+.star{display:inline-block;width:18px;height:18px;background:#fde047;margin:0 3px;box-shadow:0 0 0 3px var(--ink)}
+@media (max-width:600px){.lv-row:nth-child(odd),.lv-row:nth-child(even){transform:none}.big{font-size:26px}}
+</style>
+</head>
+<body>
+<main class="wrap" id="app"></main>
+<div id="layer"></div>
+<script>
+'use strict';
+const $ = s => document.querySelector(s);
+const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const core = w => String(w || '').replace(/[^\p{L}\p{M}\p{N}]/gu, '');
+const AR_NUM = '٠١٢٣٤٥٦٧٨٩';
+const toAr = n => String(n).replace(/\d/g, d => AR_NUM[d]);
+const params = new URLSearchParams(location.search);
+const PREVIEW = params.get('preview');           // pid/lid عند المعاينة من شاطر Studio
+const BASE = PREVIEW ? `/draft/${PREVIEW.split('/')[0]}/` : './';
+const G = { manifest: null, world: null, lesson: null, lessonUrl: '', step: 0, earned: 0, answered: {} };
+let audio = null;
+
+const store = {
+  key: () => 'shater:' + (G.manifest?.platform?.id || 'x') + (PREVIEW ? ':preview' : ''),
+  get() { try { return JSON.parse(localStorage.getItem(this.key())) || { coins: 0, done: {} }; } catch (e) { return { coins: 0, done: {} }; } },
+  set(v) { try { localStorage.setItem(this.key(), JSON.stringify(v)); } catch (e) { /* storage blocked */ } },
+};
+const ICON_EAR = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1b1a33" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/></svg>';
+const LOCK = '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2.6" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>';
+
+function toast(msg) {
+  const t = document.createElement('div'); t.className = 'toast px'; t.textContent = msg;
+  document.body.appendChild(t); setTimeout(() => t.remove(), 1600);
+}
+function addCoins(n) { const s = store.get(); s.coins += n; store.set(s); G.earned += n; const c = $('#coinN'); if (c) c.textContent = toAr(s.coins); toast('+' + toAr(n) + ' عملة'); }
+function topBar(back) {
+  return `<div class="top">${back ? `<button class="back" data-a="${back}">→ رجوع</button>` : `<div class="brand">${esc(G.manifest.platform.name)}</div>`}
+    <div class="coins px"><span class="coin"></span><span id="coinN">${toAr(store.get().coins)}</span></div></div>`;
+}
+
+/* -------------------------------------------------- audio */
+function stopAudio() { if (audio) { audio.pause(); audio = null; } document.querySelectorAll('.reading').forEach(e => e.classList.remove('reading')); }
+function playList(items, onEach) {
+  stopAudio();
+  let i = 0;
+  const next = () => {
+    if (i >= items.length) { stopAudio(); return; }
+    const it = items[i];
+    if (onEach) onEach(it, i);
+    audio = new Audio(new URL(it.src, G.lessonUrl).href);
+    audio.onended = () => { i++; next(); };
+    audio.onerror = () => { i++; next(); };
+    audio.play().catch(() => {});
+  };
+  next();
+}
+const partAudio = (part, ref) => ((G.lesson.audio || {})[part] || []).filter(a => ref === undefined || a.ref === ref);
+
+/* -------------------------------------------------- parent PIN */
+async function sha(text) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+  return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+}
+function askParent(reason) {
+  return new Promise(resolve => {
+    if (!G.manifest.platform.pin_required) return resolve(true);
+    let pin = '';
+    const draw = () => {
+      $('#layer').innerHTML = `<div class="overlay"><div class="panel px" style="max-width:360px;width:100%;text-align:center">
+        <h2>نداء للأهل 👨‍👩‍👦</h2><p style="margin:0 0 12px;font-size:18px">${esc(reason)}</p>
+        <div class="pinshow">${'●'.repeat(pin.length) || '&nbsp;'}</div>
+        <div class="keypad">${[1,2,3,4,5,6,7,8,9].map(n => `<button class="key" data-k="${n}">${AR_NUM[n]}</button>`).join('')}
+          <button class="key" data-k="del" aria-label="مسح">⌫</button><button class="key" data-k="0">${AR_NUM[0]}</button><button class="key" data-k="ok" style="background:#4ade80" aria-label="تأكيد">✓</button></div>
+        <button class="btn gray" style="margin-top:16px" data-k="cancel">إلغاء</button></div></div>`.replace(' 👨‍👩‍👦', '');
+    };
+    draw();
+    const onClick = async e => {
+      const k = e.target.closest('[data-k]')?.dataset.k; if (!k) return;
+      if (k === 'cancel') { done(false); return; }
+      if (k === 'del') pin = pin.slice(0, -1);
+      else if (k === 'ok') {
+        const ok = (await sha('shater:' + pin)) === G.manifest.platform.pin_hash;
+        if (ok) return done(true);
+        pin = ''; toast('الرقم غلط');
+      } else if (pin.length < 8) pin += k;
+      draw();
+    };
+    const done = v => { $('#layer').removeEventListener('click', onClick); $('#layer').innerHTML = ''; resolve(v); };
+    $('#layer').addEventListener('click', onClick);
+  });
+}
+
+/* -------------------------------------------------- screens */
+function worldArt(theme) {
+  // بلوكات بيكسل بسيطة كخلفية للعالم
+  const blocks = [];
+  for (let i = 0; i < 14; i++) {
+    const x = (i * 37) % 100, h = 10 + ((i * 53) % 35);
+    blocks.push(`<rect x="${x}" y="${100 - h}" width="9" height="${h}" fill="#000" opacity="${0.08 + (i % 3) * 0.05}"/>`);
+  }
+  return `<svg class="art" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">${blocks.join('')}<rect x="78" y="10" width="10" height="10" fill="#fde047" opacity=".9"/></svg>`;
+}
+function home() {
+  stopAudio();
+  const s = store.get();
+  $('#app').innerHTML = topBar() + `<h1 style="font-size:28px;margin:0 0 18px;text-shadow:3px 3px 0 #1b1a33">اختار العالم اللي هتلعب فيه</h1>
+    <div class="worlds">${G.manifest.subjects.map(w => {
+      const n = w.lessons.length, d = w.lessons.filter(l => s.done[l.id]).length;
+      return `<button class="world px th-${esc(w.theme)}" data-a="world" data-id="${esc(w.id)}">${worldArt(w.theme)}
+        <h2 style="position:relative">${esc(w.name)}</h2><p style="position:relative">${n ? `${toAr(d)} من ${toAr(n)} مراحل` : 'قريباً'}</p></button>`;
+    }).join('')}</div>`;
+}
+function world(id) {
+  stopAudio();
+  G.world = G.manifest.subjects.find(w => w.id === id);
+  const s = store.get();
+  const lv = G.world.lessons;
+  $('#app').innerHTML = topBar('home') + `<h1 style="font-size:30px;margin:0;text-shadow:3px 3px 0 #1b1a33">عالم ${esc(G.world.name)}</h1>
+    <div class="map">${lv.length ? lv.map((l, i) => {
+      const unlocked = i === 0 || s.done[lv[i - 1].id];
+      const cls = s.done[l.id] ? 'done' : unlocked ? '' : 'locked';
+      return `<div class="lv-row"><button class="level px ${cls}" data-a="${unlocked ? 'lesson' : 'locked'}" data-i="${i}" aria-label="${esc(l.title)}">
+        ${unlocked ? toAr(i + 1) : LOCK}<small>${esc(l.title)}</small></button></div>`;
+    }).join('') : '<p class="panel px">لسه مفيش مراحل هنا</p>'}</div>`;
+}
+async function openLesson(url) {
+  G.lessonUrl = new URL(url, location.href).href;
+  const r = await fetch(G.lessonUrl, { cache: 'no-store' });
+  G.lesson = await r.json();
+  G.step = 0; G.earned = 0; G.answered = {};
+  lessonView();
+}
+function hlText(text, words, cls) {
+  const set = new Set((words || []).map(core));
+  return String(text).split(/(\s+)/).map(t => set.has(core(t)) && core(t) ? `<span class="${cls}">${esc(t)}</span>` : esc(t)).join('');
+}
+function lessonView() {
+  stopAudio();
+  const L = G.lesson, c = L.content;
+  const steps = `<div class="steps">${[0, 1, 2].map(i => `<span class="${i <= G.step ? 'on' : ''}"></span>`).join('')}</div>`;
+  const back = PREVIEW ? '' : 'world';
+  let body = '';
+  if (G.step === 0) {
+    body = `<div class="panel px"><h2>${esc(L.title)}</h2>
+      ${c.intro ? `<p class="ar big" style="margin:0">${esc(c.intro)}</p>` : ''}
+      <p class="ar big" style="margin:8px 0 0">${esc(c.explanation.text)} <button class="ear" data-a="listenExp" aria-label="اسمع الشرح">${ICON_EAR}</button></p>
+      <div class="tiles">${c.explanation.examples.map(e => `<span class="tile">${esc(e)}</span>`).join('')}</div></div>
+      <div class="actions"><span></span><button class="btn" data-a="next">يلا نقرا ←</button></div>`;
+  } else if (G.step === 1) {
+    const sents = partAudio('passage');
+    body = `<div class="panel px"><h2>اقرا القطعة لوحدك 📖</h2>`.replace(' 📖', '') + `
+      <p class="ar big" id="passage" style="margin:0">${hlText(c.passage.text, c.passage.highlights, 'hl')}</p>
+      <p style="margin:10px 0 0;font-size:16px;color:#475569">الكلمات الصفرا فيها اللي اتعلمناه</p></div>
+      <div class="actions">${sents.length ? `<button class="btn blue" data-a="listenPassage">${ICON_EAR} ساعدني في القراءة</button>` : '<span></span>'}
+        <button class="btn" data-a="readDone">خلصت القراءة ←</button></div>`;
+  } else if (G.step === 2) {
+    body = c.practice.map((q, i) => {
+      const ear = partAudio('practice', i).length ? `<button class="ear" data-a="listenQ" data-q="${i}" aria-label="اسمع السؤال">${ICON_EAR}</button>` : '';
+      if (q.type === 'choice') {
+        return `<div class="panel px" style="margin-bottom:18px"><p class="ar big" style="margin:0">${esc(q.prompt)} ${ear}</p>
+          <div class="opts">${q.options.map((o, j) => `<button class="opt" data-a="choose" data-q="${i}" data-j="${j}">${esc(o)}</button>`).join('')}</div></div>`;
+      }
+      return `<div class="panel px" style="margin-bottom:18px"><p class="ar big" style="margin:0">${esc(q.prompt)} ${ear}</p>
+        <p style="margin:8px 0 0;line-height:2.4">${String(q.text).split(/(\s+)/).map(t => core(t) ? `<button class="w" data-a="pick" data-q="${i}" data-w="${esc(core(t))}">${esc(t)}</button>` : esc(t)).join('')}</p></div>`;
+    }).join('') + `<div class="actions"><span></span><button class="btn green" data-a="finish">خلصت التدريب ✓</button></div>`;
+  } else {
+    const s = store.get();
+    body = `<div class="panel px center"><h2 style="font-size:36px">برافو عليك! 🎉</h2>`.replace(' 🎉', '') + `
+      <div style="margin:10px 0"><span class="star"></span><span class="star"></span><span class="star"></span></div>
+      <p style="font-size:24px;font-weight:800;margin:6px 0">كسبت ${toAr(G.earned)} عملة · معاك ${toAr(s.coins)} عملة</p>
+      <p style="font-size:18px;margin:0">${PREVIEW ? 'دي معاينة من شاطر Studio' : 'المرحلة اللي بعدها اتفتحت!'}</p></div>
+      <div class="actions"><span></span>${PREVIEW ? '' : '<button class="btn" data-a="world">رجوع للعالم ←</button>'}</div>`;
+  }
+  $('#app').innerHTML = topBar(back) + steps + body;
+}
+
+async function act(a, el) {
+  const d = el.dataset;
+  if (a === 'home') return home();
+  if (a === 'world') return world(G.world?.id || d.id);
+  if (a === 'locked') return toast('خلّص المرحلة اللي قبلها الأول');
+  if (a === 'lesson') { const l = G.world.lessons[+d.i]; return openLesson(BASE + l.path); }
+  if (a === 'next') { G.step++; return lessonView(); }
+  if (a === 'listenExp') return playList([...partAudio('intro'), ...partAudio('explanation'), ...partAudio('examples')]);
+  if (a === 'listenPassage') {
+    if (!(await askParent('القراءة بالصوت محتاجة موافقة الأهل'))) return;
+    const items = partAudio('passage');
+    return playList(items, (it) => {
+      document.querySelectorAll('.reading').forEach(e => e.classList.remove('reading'));
+      const p = $('#passage'); if (!p) return;
+      const words = new Set(it.text.split(/\s+/).map(core));
+      p.querySelectorAll('span').forEach(sp => { if (words.has(core(sp.textContent))) sp.classList.add('reading'); });
+    });
+  }
+  if (a === 'readDone') {
+    if (!(await askParent('تأكيد إن البطل قرا القطعة'))) return;
+    G.step = 2; return lessonView();
+  }
+  if (a === 'listenQ') return playList(partAudio('practice', +d.q));
+  if (a === 'choose') {
+    const q = G.lesson.content.practice[+d.q];
+    if (G.answered['c' + d.q]) return;
+    if (+d.j === q.answer) { el.classList.add('good'); G.answered['c' + d.q] = true; addCoins(5); }
+    else { el.classList.remove('bad'); void el.offsetWidth; el.classList.add('bad'); }
+    return;
+  }
+  if (a === 'pick') {
+    const q = G.lesson.content.practice[+d.q];
+    const key = 'p' + d.q + ':' + d.w;
+    if (G.answered[key]) return;
+    if (q.answers.map(core).includes(d.w)) {
+      document.querySelectorAll(`.w[data-q="${d.q}"]`).forEach(b => { if (b.dataset.w === d.w) b.classList.add('good'); });
+      G.answered[key] = true; addCoins(2);
+    } else { el.classList.remove('bad'); void el.offsetWidth; el.classList.add('bad'); }
+    return;
+  }
+  if (a === 'finish') {
+    const c = G.lesson.content;
+    const total = c.practice.reduce((n, q, i) => n + (q.type === 'choice' ? (G.answered['c' + i] ? 1 : 0) : 0), 0);
+    const need = c.practice.filter(q => q.type === 'choice').length;
+    if (total < need) return toast('فيه أسئلة لسه محلّتهاش');
+    if (!(await askParent('موافقة الأهل للانتقال للمرحلة اللي بعدها'))) return;
+    const s = store.get(); s.done[G.lesson.id] = true; store.set(s);
+    G.step = 3; return lessonView();
+  }
+}
+document.addEventListener('click', e => { const el = e.target.closest('[data-a]'); if (el) act(el.dataset.a, el); });
+
+(async function start() {
+  try {
+    const r = await fetch(BASE + 'manifest.json', { cache: 'no-store' });
+    G.manifest = await r.json();
+    document.title = G.manifest.platform.name;
+    if (PREVIEW) { const [p, l] = PREVIEW.split('/'); return openLesson(`/draft/${p}/${l}/lesson.json`); }
+    home();
+  } catch (e) {
+    $('#app').innerHTML = '<div class="panel px">تعذّر تحميل المنصة. تأكد من الاتصال بالإنترنت.</div>';
+  }
+})();
+</script>
+</body>
+</html>
