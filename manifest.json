@@ -1,0 +1,35 @@
+{
+  "platform": {
+    "id": "shater",
+    "name": "شاطر",
+    "pin_hash": "879346646bfea7e62440586aee6f1e22231ab7cf871a54dc849c9d2054bfb412",
+    "pin_required": true
+  },
+  "subjects": [
+    {
+      "id": "arabic",
+      "name": "اللغة العربية",
+      "theme": "teal",
+      "lessons": []
+    },
+    {
+      "id": "math",
+      "name": "الرياضيات",
+      "theme": "purple",
+      "lessons": []
+    },
+    {
+      "id": "english",
+      "name": "English",
+      "theme": "blue",
+      "lessons": []
+    },
+    {
+      "id": "chinese",
+      "name": "Chinese",
+      "theme": "orange",
+      "lessons": []
+    }
+  ],
+  "updated": "2026-11-18T22:53:06"
+}
